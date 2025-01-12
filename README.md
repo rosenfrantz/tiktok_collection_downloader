@@ -69,7 +69,7 @@ $ tree -L 3
     │   ├── hardacademysound_Lurker_bass_patch_in_serum_____74430635850444066091.mp4
     │   ...
     │   └── productionmusiclive____Beautiful_vocal_chords_74442188634492861216.mp4
-    └── to_sample
+    └── other
         ├── 6769482551148746246_Untitled_7221580423476958469.mp4
         ├── 6784805723451112390_Untitled_7134276438226914603.mp4
         ...
