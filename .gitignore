@@ -1,0 +1,6 @@
+collection_htmls/*
+videos/*
+*.csv
+
+.DS_Store
+.venv/*
