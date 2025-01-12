@@ -1,4 +1,4 @@
-I have (unfortunately) invested considerable time into collection some wonderful videos from TikTok over the years, mostly incredible found sounds, acapellas, or sound design tutorials. 
+I have (unfortunately) invested considerable time into collecting some wonderful videos from TikTok over the years, mostly incredible found sounds, acapellas, or sound design tutorials. 
 
 I'd hate to lose them, so I've written a script to download them all.
 
