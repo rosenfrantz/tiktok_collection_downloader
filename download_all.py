@@ -56,11 +56,13 @@ def download_video(collection_name, video_url, video_title, base_output_path):
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.download([video_url])
             print(f"Video successfully downloaded to {output_file}")
+            return True
     except yt_dlp.utils.DownloadError as e:
         print(f"Error downloading video ({video_url}): {str(e)}")
+        return False
     except Exception as e:
         print(f"An unexpected error occurred while downloading ({video_url}): {str(e)}")
-
+        return False
 # Function to process the CSV file and download videos
 def process_csv_and_download(csv_file_path, base_output_path):
     try:
@@ -70,8 +72,9 @@ def process_csv_and_download(csv_file_path, base_output_path):
                 collection_name = row['Collection Name']
                 video_url = row['TikTok Video URL']
                 video_title = row['Video Title']
-                download_video(collection_name, video_url, video_title, base_output_path)
-                time.sleep(WAIT_SECS)
+                downloaded = download_video(collection_name, video_url, video_title, base_output_path)
+                if downloaded:
+                    time.sleep(WAIT_SECS)
     except FileNotFoundError:
         print(f"CSV file not found: {csv_file_path}")
     except KeyError as e:

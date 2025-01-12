@@ -30,7 +30,8 @@ def process_title(raw_title):
 
 def process_html_folder(folder_path, output_csv):
     """Process all HTML files in a folder and save the extracted video info to a CSV."""
-    data = []
+    # Use dictionary to store unique URLs with their data
+    url_dict = {}
 
     for filename in os.listdir(folder_path):
         if filename.endswith(".html"):
@@ -38,7 +39,13 @@ def process_html_folder(folder_path, output_csv):
             file_path = os.path.join(folder_path, filename)
             video_info = extract_video_info_from_html(file_path)
             for url, title in video_info:
-                data.append([collection_name, url, title])
+                # Only update if URL doesn't exist or current title is better
+                if url not in url_dict or (not url_dict[url][1] and title):
+                    url_dict[url] = (collection_name, title)
+
+    # Convert dictionary back to list for CSV writing
+    data = [[collection_name, url, title] 
+            for url, (collection_name, title) in url_dict.items()]
 
     # Write data to a CSV file
     with open(output_csv, 'w', newline='', encoding='utf-8') as csv_file:
