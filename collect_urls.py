@@ -34,7 +34,7 @@ def process_html_folder(folder_path, output_csv):
     url_dict = {}
 
     for filename in os.listdir(folder_path):
-        if filename.endswith(".html"):
+        if re.search(".htm[l]*", filename):
             collection_name = os.path.splitext(filename)[0]
             file_path = os.path.join(folder_path, filename)
             video_info = extract_video_info_from_html(file_path)
