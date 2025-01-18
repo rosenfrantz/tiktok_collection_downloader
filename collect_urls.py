@@ -16,7 +16,7 @@ def extract_video_info_from_html(file_path):
 
         for video in videos:
             url = video['href']
-            raw_title = video.get('title', 'Untitled')
+            raw_title = video.get('title')
             title = process_title(raw_title)
             video_data.append((url, title))
     return video_data
@@ -24,9 +24,11 @@ def extract_video_info_from_html(file_path):
 def process_title(raw_title):
     """Process video title by removing hashtags and limiting length."""
     # Remove hashtags using regex
-    title_without_hashtags = re.sub(r"#\S+", "", raw_title).strip()
+    if raw_title is not None:
+        title_without_hashtags = re.sub(r"#\S+", "", raw_title).strip()
     # Limit title to 256 characters
-    return title_without_hashtags[:256]
+        return title_without_hashtags[:256]
+    else: None
 
 def process_html_folder(folder_path, output_csv):
     """Process all HTML files in a folder and save the extracted video info to a CSV."""
